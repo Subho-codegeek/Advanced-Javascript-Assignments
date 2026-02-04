@@ -9,7 +9,10 @@
 
 
 function callbackify(fn) {
-
+    return function (...args) {
+        const callback = args[args.length - 1];
+        fn(...args.slice(0, -1)).then(data => callback(null, data)).catch(error => callback(error, null));
+    }
 }
 
 module.exports = callbackify;

@@ -7,7 +7,11 @@
 
 
 function retryOnce(fn) {
-
+    return function(...args){
+        return fn(...args).catch(function(){
+            return fn(...args);
+        })
+    }
 }
 
 module.exports = retryOnce;

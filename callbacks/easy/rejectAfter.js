@@ -7,6 +7,8 @@
 
 function rejectAfter(ms, callback) {
 
+    setTimeout(callback(new Error("Operation timed out")),ms);
+
 }
 
 module.exports = rejectAfter;
